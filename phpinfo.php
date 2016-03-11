@@ -5,4 +5,4 @@
  * Date: 16/3/10
  * Time: 21:31
  */
-phpinfo();
+phpinfo(); //PHP5.5.30
