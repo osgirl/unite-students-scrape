@@ -27,6 +27,8 @@ class Loader {
     public function run() {
         echo "Let's make some noise...\n";
 
+        // firstly do some work for output switch
+
         $opt = new Zend_Console_Getopt('f:');
         try {
             $opt->parse();
@@ -38,6 +40,8 @@ class Loader {
         if ($fOption == 'json') {
             $this->_outputJson = true;
         }
+
+        // that's the real work...
 
         $home = new Scrape\Home(self::DESTINATION_URL);
 
