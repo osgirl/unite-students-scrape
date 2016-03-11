@@ -1,12 +1,12 @@
 {
-  "name": "vendor_name/package_name",
-  "description": "description_text",
+  "name": "caiknife/unite-students-scrape",
+  "description": "read 12.pdf",
   "minimum-stability": "stable",
   "license": "proprietary",
   "authors": [
     {
-      "name": "author's name",
-      "email": "email@example.com"
+      "name": "carvin cai",
+      "email": "caiknife@foxmail.com"
     }
   ],
   "require": {
