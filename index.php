@@ -16,8 +16,28 @@ require_once "vendor/autoload.php";
 class Loader {
     CONST DESTINATION_URL = "http://www.unite-students.com/liverpool";
 
-    public static function run() {
-        Zend_Debug::dump("Hello! Let's R!O!C!K!");
+    CONST JSON_FILENAME = "result.json";
+
+    CONST CSV_FILENAME = "result.csv";
+
+    protected $_properties;
+
+    protected $_outputJson = false;
+
+    public function run() {
+        echo "Let's make some noise...\n";
+
+        $opt = new Zend_Console_Getopt('f:');
+        try {
+            $opt->parse();
+        } catch (Zend_Console_Getopt_Exception $e) {
+            echo $e->getMessage();
+        }
+        $fOption = $opt->getOption('f');
+
+        if ($fOption == 'json') {
+            $this->_outputJson = true;
+        }
 
         $home = new Scrape\Home(self::DESTINATION_URL);
 
@@ -30,10 +50,40 @@ class Loader {
 
         }
 
-        Zend_Debug::dump($properties);
+        $this->_properties = $properties;
 
+        if ($this->_outputJson) {
+            $this->_outputToJson();
+        } else {
+            $this->_outputToCSV();
+        }
+
+        echo "Done...\n";
+    }
+
+    protected function _outputToCSV() {
+        $properties = [];
+        foreach ($this->_properties as $p) {
+            if (empty($p['RoomType'])) {
+                $properties[] = [$p['PropertyName'], '', ''];
+            } else {
+                foreach ($p['RoomType'] as $r) {
+                    $properties[] = [$p['PropertyName'], $r['RoomType'], $r['StartPrice']];
+                }
+            }
+        }
+        $fp = fopen(self::CSV_FILENAME, 'w');
+        foreach ($properties as $p) {
+            fputcsv($fp, $p);
+        }
+        fclose($fp);
+    }
+
+    protected function _outputToJson() {
+        file_put_contents(self::JSON_FILENAME,
+            json_encode($this->_properties, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
     }
 
 }
 
-Loader::run();
+(new Loader())->run();
