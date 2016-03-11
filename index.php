@@ -19,13 +19,18 @@ class Loader {
     public static function run() {
         Zend_Debug::dump("Hello! Let's R!O!C!K!");
 
-//        $response = Requests::get(self::DESTINATION_URL);
-//
-//        phpQuery::newDocument($response->body);
-//
-//        Zend_Debug::dump(pq('title')->text());
+        $home = new Scrape\Home(self::DESTINATION_URL);
 
-        Zend_Debug::dump((new Scrape\Home(self::DESTINATION_URL))->getDestinationUrl());
+        $properties = $home->loadPage()->findNode()->getProperties();
+
+        foreach ($properties as $i => $p) {
+            $detail = new Scrape\Detail($p['PropertyLink']);
+
+            $properties[$i]['RoomType'] = $detail->loadPage()->findNode()->getRoomTypes();
+
+        }
+
+        Zend_Debug::dump($properties);
 
     }
 
