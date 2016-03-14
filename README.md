@@ -2,7 +2,7 @@
 
 ## Outline
 
-Create a composer based PHP script that scrapes http://www.unite­students.com/liverpool and gathers the Property names, room types in each property and minimum price for each room type.
+Create a composer based PHP script that scrapes http://www.unite-students.com/liverpool and gathers the Property names, room types in each property and minimum price for each room type.
 
 ## Output
 
