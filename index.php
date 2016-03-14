@@ -34,6 +34,7 @@ class Loader {
             $opt->parse();
         } catch (Zend_Console_Getopt_Exception $e) {
             echo $e->getMessage();
+            exit();
         }
         $fOption = $opt->getOption('f');
 
