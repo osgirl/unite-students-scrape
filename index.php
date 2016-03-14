@@ -43,12 +43,12 @@ class Loader {
 
         // that's the real work...
 
-        $home = new Scrape\Home(self::DESTINATION_URL);
+        $home = new \Scrape\Home(self::DESTINATION_URL);
 
         $properties = $home->loadPage()->findNode()->getProperties();
 
         foreach ($properties as $i => $p) {
-            $detail = new Scrape\Detail($p['PropertyLink']);
+            $detail = new \Scrape\Detail($p['PropertyLink']);
 
             $properties[$i]['RoomType'] = $detail->loadPage()->findNode()->getRoomTypes();
 
