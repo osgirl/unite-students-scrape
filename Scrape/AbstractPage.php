@@ -34,9 +34,9 @@ abstract class AbstractPage {
     }
 
     public function loadPage() {
-        $response    = \Requests::get($this->_destinationUrl);
+        $response = \Requests::get($this->_destinationUrl);
         \phpQuery::newDocument($response->body);
-        $this->_body = $response->body;
+        $this->_body  = $response->body;
         $this->_title = pq('title')->text();
         return $this;
     }
