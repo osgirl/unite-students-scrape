@@ -14,6 +14,8 @@ require_once "zend_autoload.php";
 require_once "vendor/autoload.php";
 
 class Loader {
+    protected static $_instance = null;
+
     CONST DESTINATION_URL = "http://www.unite-students.com/liverpool";
 
     CONST JSON_FILENAME = "result.json";
@@ -23,6 +25,17 @@ class Loader {
     protected $_properties;
 
     protected $_outputJson = false;
+
+    protected function __construct() {
+
+    }
+
+    public static function getInstance() {
+        if (self::$_instance === null) {
+            self::$_instance = new self();
+        }
+        return self::$_instance;
+    }
 
     public function run() {
         echo "Let's make some noise...\n";
@@ -91,4 +104,4 @@ class Loader {
 
 }
 
-(new Loader())->run();
+Loader::getInstance()->run();
