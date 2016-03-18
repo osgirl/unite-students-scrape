@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="shuangluo"/>
+  <title>照片也要按照基本法</title>
+  <link href="http://cdn.bootcss.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+  <h3>总想搞个大新闻</h3>
+
+  <div class="container">
+    <label for="rtx" class="label">RTX(英文分号（;）分隔)</label>
+    <input type="text" id="rtx" class="input-xxlarge">
+    <a href="javascript:getPhoto();" class="btn btn-default">转换</a>
+  </div>
+  <div class="container">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>RTX</th>
+        <th>工卡照</th>
+        <th>BBS照</th>
+      </tr>
+      </thead>
+      <tbody id="tb"></tbody>
+    </table>
+  </div>
+</div>
+
+<script src="http://ossweb-img.qq.com/images/js/jquery/jquery-1.7.1.min.js"></script>
+<script>
+  function filterRTX(rtx) {
+    var realRTX = rtx.match("^[a-zA-z]+");
+    console.log(realRTX);
+    return realRTX[0];
+  }
+
+  function getPhoto() {
+    var rtx = $("#rtx").val();
+    var rtxArray = rtx.split(';');
+    var rtxNum = rtxArray.length;
+    var trStr = "";
+    for (var i = 0; i < rtxNum; i++) {
+      if (rtxArray[i] == '') {
+        continue;
+      }
+
+      var realRTX = filterRTX(rtxArray[i]);
+
+      if (!isValidRtx(realRTX)) {
+        continue;
+      }
+      trStr += "<tr>" +
+        "<td>" + rtxArray[i] + "</td>" +
+        "<td><img src='http://dcloud.oa.com/Public/Avatar/" + realRTX + ".png'></td>" +
+        "<td><img src='http://dayu.oa.com/avatars/" + realRTX + "/profile.jpg'></td>" +
+        "</tr>";
+    }
+    $("#tb").empty().append(trStr);
+  }
+  function isValidRtx(rtx) {
+    var a = rtx.match(new RegExp("^[a-z]{3,12}$"));
+    return a != null;
+  }
+</script>
+<script src="http://cdn.bootcss.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>
