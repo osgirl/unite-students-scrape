@@ -29,6 +29,7 @@
     <table class="table table-bordered table-hover table-striped">
       <thead>
       <tr>
+        <th>序号</th>
         <th>RTX</th>
         <th>工卡照</th>
         <th>BBS照</th>
@@ -36,6 +37,7 @@
       </thead>
       <tbody>
       <tr v-for="person in list">
+        <td>{{ $index+1 }}</td>
         <td>{{ person.rtx }}</td>
         <td><img v-bind:src="person.rtx_avatar"></td>
         <td><img v-bind:src="person.bbs_avatar"></td>
