@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "electrolinux/phpquery": "0.9.6",
+    "electrolinux/phpquery": ">=0.9",
     "rmccue/requests": ">=1.0"
   }
 }
