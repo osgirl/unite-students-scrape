@@ -1,98 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="author" content="caiknife"/>
-  <script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>
-  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-  <!--<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>-->
-  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-  <!--<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
-  <title>VUE DEMO</title>
+    <meta charset="UTF-8">
+    <meta name="author" content="caiknife"/>
+    <script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <!--<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>-->
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <!--<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+    <title>VUE DEMO</title>
 </head>
 <body>
 <div class="container" id="rtx-list">
-  <h3>VUE DEMO for Transfering RTX to Photos</h3>
+    <h3>VUE DEMO for Transfering RTX to Photos</h3>
 
-  <div class="row">
-    <div class="col-md-10">
-      <div class="form-group">
-        <input v-on:keyup.enter="showRTXList" type="text" id="rtx" class="form-control" placeholder="RTX（英文分号;分隔），可以从RTX群对话中复制名单在这里输入"/>
-      </div>
+    <div class="row">
+        <div class="col-md-10">
+            <div class="form-group">
+                <input v-on:keyup.enter="showRTXList" type="text" id="rtx" class="form-control"
+                       placeholder="RTX（英文分号;分隔），可以从RTX群对话中复制名单在这里输入"/>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button v-on:click="showRTXList" class="btn btn-primary">Transfer to Photos</button>
+        </div>
     </div>
-    <div class="col-md-2">
-      <button v-on:click="showRTXList" class="btn btn-primary">Transfer to Photos</button>
+    <div class="row">
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>RTX</th>
+                <th>工卡照</th>
+                <th>BBS照</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="person in list">
+                <td>{{ $index+1 }}</td>
+                <td>{{ person.rtx }}</td>
+                <td><img v-bind:src="person.rtx_avatar"></td>
+                <td><img v-bind:src="person.bbs_avatar"></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-  </div>
-  <div class="row">
-    <table class="table table-bordered table-hover table-striped">
-      <thead>
-      <tr>
-        <th>序号</th>
-        <th>RTX</th>
-        <th>工卡照</th>
-        <th>BBS照</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr v-for="person in list">
-        <td>{{ $index+1 }}</td>
-        <td>{{ person.rtx }}</td>
-        <td><img v-bind:src="person.rtx_avatar"></td>
-        <td><img v-bind:src="person.bbs_avatar"></td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
 </div>
 </body>
 <script type="text/javascript">
-  function isValidRTX(rtx) {
-    var a = rtx.match(new RegExp("^[a-z]{3,20}$"));
-    return a != null;
-  }
-
-  function filterRTX(rtx) {
-    var realRTX = rtx.match("^[a-zA-z]+");
-    return realRTX[0];
-  }
-
-  function splitRTX() {
-    var result = [];
-    var rtxArray = document.getElementById('rtx').value.split(';');
-
-    for (var i in rtxArray) {
-      if (rtxArray[i] == '') {
-        continue;
-      }
-
-      var realRTX = filterRTX(rtxArray[i]);
-
-      if (!isValidRTX(realRTX)) {
-        continue;
-      }
-
-      result.push({
-        rtx: rtxArray[i],
-        rtx_avatar: "http://r.hrc.oa.com/photo/150/" + realRTX + ".png",
-        bbs_avatar: "http://dayu.oa.com/avatars/" + realRTX + "/profile.jpg"
-      });
+    function isValidRTX(rtx) {
+        var a = rtx.match(new RegExp("^[a-z]{3,20}$"));
+        return a != null;
     }
-    return result;
-  }
 
-  var rtxList = new Vue({
-    el: '#rtx-list',
-    data: {
-      list: []
-    },
-    methods: {
-      showRTXList: function () {
-        this.list = splitRTX();
-      }
+    function filterRTX(rtx) {
+        var realRTX = rtx.match("^[a-zA-z]+");
+        return realRTX[0];
     }
-  });
+
+    function splitRTX() {
+        var result = [];
+        var rtxArray = document.getElementById('rtx').value.split(';');
+
+        for (var i in rtxArray) {
+            if (rtxArray[i] == '') {
+                continue;
+            }
+
+            var realRTX = filterRTX(rtxArray[i]);
+
+            if (!isValidRTX(realRTX)) {
+                continue;
+            }
+
+            result.push({
+                rtx: rtxArray[i],
+                rtx_avatar: "http://r.hrc.oa.com/photo/150/" + realRTX + ".png",
+                bbs_avatar: "http://dayu.oa.com/avatars/" + realRTX + "/profile.jpg"
+            });
+        }
+        return result;
+    }
+
+    var rtxList = new Vue({
+        el: '#rtx-list',
+        data: {
+            list: []
+        },
+        methods: {
+            showRTXList: function () {
+                this.list = splitRTX();
+            }
+        }
+    });
 
 </script>
 </html>
