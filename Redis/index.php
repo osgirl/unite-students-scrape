@@ -14,3 +14,5 @@ $redisClient = new Predis\Client();
 $redisClient->select(0);
 
 $redisClient->set("master", "caiknife");
+
+Kint::dump($redisClient);
