@@ -16,3 +16,7 @@ $redisClient->select(0);
 $redisClient->set("master", "caiknife");
 
 Kint::dump($redisClient);
+
+Kint::dump($redisClient->get("master"));
+
+Kint::dump($redisClient->get("caiknife"));
