@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: caiknife
  * Date: 16/5/18
- * Time: 15:59
+ * Time: 16:26
  */
 
 require_once "zend_autoload.php";
@@ -14,16 +14,18 @@ use Predis\Client;
 $rc = new Client();
 $rc->select(1);
 
-const SET_KEY = "set-key";
+const HASH_KEY = "hash-key";
 
-$result = $rc->sadd(SET_KEY, ["a", "b", "c"]);
+$data = ["name" => "caiknife", "gender" => "male", "height" => 176];
+
+$result = $rc->hmset(HASH_KEY, $data);
 Kint::dump($result);
 
-$result = $rc->scard(SET_KEY);
+$result = $rc->hmget(HASH_KEY, array_keys($data));
 Kint::dump($result);
 
-$result = $rc->smembers(SET_KEY);
+$result = $rc->hgetall(HASH_KEY);
 Kint::dump($result);
 
-Kint::dump($rc->sismember(SET_KEY, "a"));
-Kint::dump($rc->sismember(SET_KEY, "d"));
+$result = $rc->hlen(HASH_KEY);
+Kint::dump($result);
