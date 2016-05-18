@@ -9,14 +9,11 @@
 require_once "zend_autoload.php";
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-$redisClient = new Predis\Client();
+$rc = new Predis\Client();
+$rc->select(0);
 
-$redisClient->select(0);
+$rc->set("master", "caiknife");
 
-$redisClient->set("master", "caiknife");
-
-Kint::dump($redisClient);
-
-Kint::dump($redisClient->get("master"));
-
-Kint::dump($redisClient->get("caiknife"));
+Kint::dump($rc);
+Kint::dump($rc->get("master"));
+Kint::dump($rc->get("caiknife"));

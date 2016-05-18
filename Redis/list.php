@@ -12,8 +12,10 @@ require_once dirname(__DIR__) . "/vendor/autoload.php";
 $rc = new Predis\Client();
 $rc->select(1);
 
-//$rc->lpush("list:order", [1, 2, 3, 4, 5]);
+const LIST_KEY = "list:order";
 
-$result = $rc->lrange("list:order", 0, -1);
+$rc->lpush(LIST_KEY, [1, 2, 3, 4, 5]);
+
+$result = $rc->lrange(LIST_KEY, 0, -1);
 
 Kint::dump($result);
