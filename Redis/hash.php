@@ -29,3 +29,7 @@ Kint::dump($result);
 
 $result = $rc->hlen(HASH_KEY);
 Kint::dump($result);
+
+Kint::dump($rc->hkeys(HASH_KEY));
+
+Kint::dump($rc->hvals(HASH_KEY));
