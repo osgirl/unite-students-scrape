@@ -9,7 +9,9 @@
 require_once "zend_autoload.php";
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-$rc = new Predis\Client();
+use Predis\Client;
+
+$rc = new Client();
 $rc->select(0);
 
 $rc->set("master", "caiknife");
