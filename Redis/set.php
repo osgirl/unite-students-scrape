@@ -28,6 +28,9 @@ Kint::dump($result);
 Kint::dump($rc->sismember(SET_KEY, "a"));
 Kint::dump($rc->sismember(SET_KEY, "d"));
 
+Kint::dump($rc->srem(SET_KEY, ["a", "b"]));
+Kint::dump($rc->smembers(SET_KEY));
+
 $a = [1, 2, 3, 5, 6, 7, 8, 9];
 $b = [5, 6, 7, 8, 9, 10, 11, 12];
 const SET_A = "set-a";
