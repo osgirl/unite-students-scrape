@@ -16,6 +16,6 @@ $rc->select(0);
 
 $rc->set("master", "caiknife");
 
-Kint::dump($rc);
+//Kint::dump($rc);
 Kint::dump($rc->get("master"));
 Kint::dump($rc->get("caiknife"));
