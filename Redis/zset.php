@@ -30,3 +30,7 @@ Kint::dump($rc->zcount(ZSET_KEY, 0, 5));
 Kint::dump($rc->zrange(ZSET_KEY, 0, -1, ["withscores" => true]));
 
 Kint::dump($rc->zrevrange(ZSET_KEY, 0, -1, ["withscores" => true]));
+
+Kint::dump($rc->zrangebyscore(ZSET_KEY, 0, 100, ["withscores" => true, "limit" => [1, 1]]));
+
+Kint::dump($rc->zrevrangebyscore(ZSET_KEY, 100, 0, ["withscores" => true, "limit" => [1, 1]]));
