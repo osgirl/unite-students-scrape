@@ -30,6 +30,10 @@ class Loader {
 
     }
 
+    protected function __clone() {
+
+    }
+    
     public static function getInstance() {
         if (self::$_instance === null) {
             self::$_instance = new self();
