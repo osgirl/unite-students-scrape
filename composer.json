@@ -13,6 +13,6 @@
     "electrolinux/phpquery": ">=0.9",
     "rmccue/requests": ">=1.0",
     "predis/predis": ">=1.0",
-    "ramsey/uuid": ">=1.0"
+    "ramsey/uuid": "^3.4"
   }
 }
