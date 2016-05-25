@@ -10,6 +10,14 @@ require_once "simpletest/autorun.php";
 require_once "zend_autoload.php";
 
 class TestBase extends UnitTestCase {
+    public function setUp() {
+        Kint::dump("TestBase set up!");
+    }
+
+    public function tearDown() {
+        Kint::dump("TestBase tear down!");
+    }
+
     public function testLogIsTrue() {
         $this->assertTrue(true);
     }
