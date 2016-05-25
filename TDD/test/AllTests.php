@@ -12,6 +12,17 @@ require_once "zend_autoload.php";
 class AllTests extends TestSuite {
     public function __construct() {
         parent::__construct("all tests");
-        $this->addFile("TestBase.php");
+        //$this->addFile("TestBase.php");
+        /**
+         * 读取当前目录下所有的文件，如果是以test或者Test开头的文件，那么就认为它是一个TestCase
+         */
+        $dir = new RecursiveDirectoryIterator(__DIR__);
+        foreach ($dir as $_key => $_value) {
+            $file = $_value->getFileName();
+            if (stripos($file, "test") === 0) {
+                $this->addFile($_value->getRealPath());
+            }
+        }
+
     }
 }
