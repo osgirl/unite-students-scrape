@@ -7,7 +7,6 @@
  */
 
 require_once "simpletest/autorun.php";
-require_once "zend_autoload.php";
 
 class AllTestSuite extends TestSuite {
     public function __construct() {

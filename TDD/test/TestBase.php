@@ -7,7 +7,6 @@
  */
 
 require_once "simpletest/autorun.php";
-require_once "zend_autoload.php";
 
 class TestBase extends UnitTestCase {
     public function setUp() {
