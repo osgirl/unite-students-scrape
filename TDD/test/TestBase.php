@@ -18,13 +18,16 @@ class TestBase extends UnitTestCase {
         //Kint::dump("TestBase tear down!");
     }
 
-    public function testLogIsTrue() {
+    public function testIsTrue() {
         $this->assertTrue(true, "This should be true.");
     }
 
-    public function testLogIsFalse() {
+    public function testIsFalse() {
         $this->assertFalse(false, "This should be false.");
     }
 
+    public function testIsPattern() {
+        $this->assertPattern('/^test.*\.php$/i', "TestBase.php");
+    }
 
 }
