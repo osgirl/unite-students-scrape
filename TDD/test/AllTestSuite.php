@@ -9,7 +9,7 @@
 require_once "simpletest/autorun.php";
 require_once "zend_autoload.php";
 
-class AllTests extends TestSuite {
+class AllTestSuite extends TestSuite {
     public function __construct() {
         parent::__construct("all tests");
         //$this->addFile("TestBase.php");
