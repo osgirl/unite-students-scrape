@@ -9,20 +9,20 @@
 require_once "simpletest/autorun.php";
 
 class TestBase extends UnitTestCase {
-    public function setUp() {
-        //Kint::dump("TestBase set up!");
-    }
-
-    public function tearDown() {
-        //Kint::dump("TestBase tear down!");
-    }
-
     public function testIsTrue() {
-        $this->assertTrue(true, "This should be true.");
+        $a = 1;
+        $this->assertTrue($a === 1, "This should be true.");
+        $this->assertTrue(false == null);
+        $this->assertTrue(false == 0);
+        $this->assertTrue(false == array());
+        $this->assertTrue(false == '');
     }
 
-    public function testIsFalse() {
-        $this->assertFalse(false, "This should be false.");
+    public function testEmptyStringIsNotFalse() {
+        $a = '';
+        $this->assertFalse($a === null, "This should be false.");
+        $this->assertFalse(false === null);
+        $this->assertFalse('' == array());
     }
 
     public function testIsPattern() {
