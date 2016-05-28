@@ -16,5 +16,10 @@
     "ramsey/uuid": "^3.4",
     "fzaninotto/faker": "^1.6",
     "ilya/belt": "^2.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Scrape\\": "Scrape/"
+    }
   }
 }

@@ -6,12 +6,8 @@
  * Time: 20:16
  */
 
-$path = get_include_path();
-
-set_include_path(__DIR__ . PATH_SEPARATOR . $path);
-
-require_once "zend_autoload.php";
 require_once "vendor/autoload.php";
+require_once "zend_autoload.php";
 
 class Loader {
     protected static $_instance = null;
@@ -33,7 +29,7 @@ class Loader {
     protected function __clone() {
 
     }
-    
+
     public static function getInstance() {
         if (self::$_instance === null) {
             self::$_instance = new self();
