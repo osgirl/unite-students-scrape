@@ -17,6 +17,9 @@
     "fzaninotto/faker": "~1.6",
     "ilya/belt": "~2.1"
   },
+  "require-dev": {
+    "simpletest/simpletest": "^1.1"
+  },
   "autoload": {
     "psr-4": {
       "Scrape\\": "Scrape/"
