@@ -28,8 +28,10 @@ Kint::dump($rc->zscore(ZSET_KEY, "b"));
 Kint::dump($rc->zcount(ZSET_KEY, 0, 5));
 
 Kint::dump($rc->zrange(ZSET_KEY, 0, -1, ["withscores" => true]));
+Kint::dump($rc->zrange(ZSET_KEY, 0, -1, ["limit" => [1, 1]]));
 
 Kint::dump($rc->zrevrange(ZSET_KEY, 0, -1, ["withscores" => true]));
+Kint::dump($rc->zrevrange(ZSET_KEY, 0, -1, ["limit" => [1, 1]]));
 
 Kint::dump($rc->zrangebyscore(ZSET_KEY, 0, 100, ["withscores" => true, "limit" => [1, 1]]));
 Kint::dump($rc->zrangebyscore(ZSET_KEY, 0, 100, ["limit" => [1, 1]]));
