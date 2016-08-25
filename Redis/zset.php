@@ -27,14 +27,23 @@ Kint::dump($rc->zscore(ZSET_KEY, "b"));
 
 Kint::dump($rc->zcount(ZSET_KEY, 0, 5));
 
+/**
+ * zrange($key, $start, $stop, [$option])
+ * option: *only* withscores
+ */
 Kint::dump($rc->zrange(ZSET_KEY, 0, -1, ["withscores" => true]));
-Kint::dump($rc->zrange(ZSET_KEY, 0, -1, ["limit" => [0, 1]]));
+Kint::dump($rc->zrange(ZSET_KEY, 0, -1));
 
 Kint::dump($rc->zrevrange(ZSET_KEY, 0, -1, ["withscores" => true]));
-Kint::dump($rc->zrevrange(ZSET_KEY, 0, -1, ["limit" => [1, 1]]));
+Kint::dump($rc->zrevrange(ZSET_KEY, 0, -1));
 
-Kint::dump($rc->zrangebyscore(ZSET_KEY, 0, 100, ["withscores" => true, "limit" => [1, 1]]));
-Kint::dump($rc->zrangebyscore(ZSET_KEY, 0, 100, ["limit" => [1, 1]]));
+/**
+ * zrangebyscore($key, $min, $max, [$option])
+ * option: withscores
+ * option: limit $offset $count
+ */
+Kint::dump($rc->zrangebyscore(ZSET_KEY, 0, 100, ["withscores" => true, "limit" => [0, 1]]));
+Kint::dump($rc->zrangebyscore(ZSET_KEY, 0, 100, ["limit" => [0, 1]]));
 
-Kint::dump($rc->zrevrangebyscore(ZSET_KEY, 100, 0, ["withscores" => true, "limit" => [1, 1]]));
-Kint::dump($rc->zrevrangebyscore(ZSET_KEY, 100, 0, ["limit" => [1, 1]]));
+Kint::dump($rc->zrevrangebyscore(ZSET_KEY, 100, 0, ["withscores" => true, "limit" => [0, 1]]));
+Kint::dump($rc->zrevrangebyscore(ZSET_KEY, 100, 0, ["limit" => [0, 1]]));
