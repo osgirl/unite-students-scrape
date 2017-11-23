@@ -8,8 +8,10 @@
 
 require_once "simpletest/autorun.php";
 
-class TestBase extends UnitTestCase {
-    public function testIsTrue() {
+class TestBase extends UnitTestCase
+{
+    public function testIsTrue()
+    {
         $a = 1;
         $this->assertTrue($a === 1, "This should be true.");
         $this->assertTrue(false == null);
@@ -18,15 +20,16 @@ class TestBase extends UnitTestCase {
         $this->assertTrue(false == '');
     }
 
-    public function testEmptyStringIsNotFalse() {
+    public function testEmptyStringIsNotFalse()
+    {
         $a = '';
         $this->assertFalse($a === null, "This should be false.");
         $this->assertFalse(false === null);
         $this->assertFalse('' == array());
     }
 
-    public function testIsPattern() {
+    public function testIsPattern()
+    {
         $this->assertPattern('/^test.*\.php$/i', "TestBase.php");
     }
-
 }

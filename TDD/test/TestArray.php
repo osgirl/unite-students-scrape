@@ -8,8 +8,10 @@
 
 require_once "simpletest/autorun.php";
 
-class TestArray extends UnitTestCase {
-    public function testArrayPush() {
+class TestArray extends UnitTestCase
+{
+    public function testArrayPush()
+    {
         $a = [1, 2, 3, 4];
         $b = [1, 2, 3, 4, 5, 6, 7];
         $c = array_push($a, 5, 6, 7);
@@ -18,7 +20,8 @@ class TestArray extends UnitTestCase {
         $this->assertEqual($c, 7);
     }
 
-    public function testArrayPop() {
+    public function testArrayPop()
+    {
         $a = [1, 2, 3, 4];
         $b = [1, 2, 3];
         $c = array_pop($a);

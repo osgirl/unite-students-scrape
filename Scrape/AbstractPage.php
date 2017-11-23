@@ -8,8 +8,9 @@
 
 namespace Scrape;
 
-abstract class AbstractPage {
-    CONST BASE_URL = "http://www.unite-students.com";
+abstract class AbstractPage
+{
+    const BASE_URL = "http://www.unite-students.com";
 
     protected $_destinationUrl;
 
@@ -17,23 +18,28 @@ abstract class AbstractPage {
 
     protected $_title;
 
-    public function __construct($destinationUrl) {
+    public function __construct($destinationUrl)
+    {
         $this->_destinationUrl = $destinationUrl;
     }
 
-    public function getDestinationUrl() {
+    public function getDestinationUrl()
+    {
         return $this->_destinationUrl;
     }
 
-    public function getBody() {
+    public function getBody()
+    {
         return $this->_body;
     }
 
-    public function getTitle() {
+    public function getTitle()
+    {
         return $this->_title;
     }
 
-    public function loadPage() {
+    public function loadPage()
+    {
         $response = \Requests::get($this->_destinationUrl);
         \phpQuery::newDocument($response->body);
         $this->_body  = $response->body;

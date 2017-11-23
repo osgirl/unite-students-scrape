@@ -8,8 +8,10 @@
 
 require_once "simpletest/autorun.php";
 
-class AllTestSuite extends TestSuite {
-    public function __construct() {
+class AllTestSuite extends TestSuite
+{
+    public function __construct()
+    {
         parent::__construct("all tests");
         /**
          * 读取当前目录下所有的文件，如果是以test或者Test开头的文件，那么就认为它是一个TestCase
@@ -21,6 +23,5 @@ class AllTestSuite extends TestSuite {
                 $this->addFile($_value->getRealPath());
             }
         }
-
     }
 }

@@ -8,10 +8,12 @@
 
 namespace Scrape;
 
-class Home extends AbstractPage {
+class Home extends AbstractPage
+{
     protected $_properties = array();
 
-    public function findNode() {
+    public function findNode()
+    {
         $ul = pq("div.listing-filter__listings > ul");
 
         foreach ($ul["> li"] as $li) {
@@ -26,7 +28,8 @@ class Home extends AbstractPage {
         return $this;
     }
 
-    public function getProperties() {
+    public function getProperties()
+    {
         return $this->_properties;
     }
 }

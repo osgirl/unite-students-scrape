@@ -8,10 +8,12 @@
 
 namespace Scrape;
 
-class Detail extends AbstractPage {
+class Detail extends AbstractPage
+{
     protected $_roomTypes = array();
 
-    public function findNode() {
+    public function findNode()
+    {
         $lis = pq("ul.rooms__list > li.rooms__list__menu__item");
 
         foreach ($lis as $li) {
@@ -31,11 +33,13 @@ class Detail extends AbstractPage {
         return $this;
     }
 
-    public function getRoomTypes() {
+    public function getRoomTypes()
+    {
         return $this->_roomTypes;
     }
 
-    protected function _formatPrice($price) {
+    protected function _formatPrice($price)
+    {
         if ($price == 'sold out') {
             return $price;
         }

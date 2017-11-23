@@ -9,35 +9,38 @@
 require_once "vendor/autoload.php";
 require_once "zend_autoload.php";
 
-class Loader {
+class Loader
+{
     protected static $_instance = null;
 
-    CONST DESTINATION_URL = "http://www.unite-students.com/liverpool";
+    const DESTINATION_URL = "http://www.unite-students.com/liverpool";
 
-    CONST JSON_FILENAME = "result.json";
+    const JSON_FILENAME = "result.json";
 
-    CONST CSV_FILENAME = "result.csv";
+    const CSV_FILENAME = "result.csv";
 
     protected $_properties;
 
     protected $_outputJson = false;
 
-    protected function __construct() {
-
+    protected function __construct()
+    {
     }
 
-    protected function __clone() {
-
+    protected function __clone()
+    {
     }
 
-    public static function getInstance() {
+    public static function getInstance()
+    {
         if (self::$_instance === null) {
             self::$_instance = new self();
         }
         return self::$_instance;
     }
 
-    public function run() {
+    public function run()
+    {
         echo "Let's make some noise...\n";
 
         // firstly do some work for output switch
@@ -65,7 +68,6 @@ class Loader {
             $detail = new \Scrape\Detail($p['PropertyLink']);
 
             $properties[$i]['RoomType'] = $detail->loadPage()->findNode()->getRoomTypes();
-
         }
 
         $this->_properties = $properties;
@@ -79,7 +81,8 @@ class Loader {
         echo "Done...\n";
     }
 
-    protected function _outputToCSV() {
+    protected function _outputToCSV()
+    {
         $properties = [];
         foreach ($this->_properties as $p) {
             if (empty($p['RoomType'])) {
@@ -97,11 +100,13 @@ class Loader {
         fclose($fp);
     }
 
-    protected function _outputToJson() {
-        file_put_contents(self::JSON_FILENAME,
-            json_encode($this->_properties, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+    protected function _outputToJson()
+    {
+        file_put_contents(
+            self::JSON_FILENAME,
+            json_encode($this->_properties, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+        );
     }
-
 }
 
 Loader::getInstance()->run();
